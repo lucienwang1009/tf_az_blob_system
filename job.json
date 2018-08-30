@@ -1,0 +1,29 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Azure/BatchAI/master/schemas/2017-09-01-preview/job.json",
+    "properties": {
+        "containerSettings": {
+            "imageSourceRegistry": {
+                "credentials": {
+                    "password": "CamocqUfj41tIotScXKr4/pY7NGirpBV",
+                    "username": "mlperfregistry"
+                },
+                "image": "mlperfregistry.azurecr.io/mlperf/imagenet_az_blob:cuda9-cudnn7-tf1.10.0",
+                "serverUrl": "mlperfregistry.azurecr.io"
+            }
+        },
+        "customToolkitSettings": {
+            "commandLine": "bash /research/resnet/official/resnet/run_az_blob.sh sDGa69CWFFjo7yswO1AH9OZKukfhjFOagz0l8ed7LfLi0AZTOEZrXc/GQCw/5sdCSFxVxosmJqB3e0KGAMnZsA== cifar10 -dd az://mlperfstorage.blob.core.windows.net/cifar10 --noprefetch "
+        },
+        "mountVolumes": {
+            "azureFileShares": [
+                {
+                    "azureFileUrl": "https://mlperfstorage.file.core.windows.net/logs",
+                    "relativeMountPath": "logs"
+                }
+            ]
+        },
+        "nodeCount": 1,
+        "stdOutErrPathPrefix": "$AZ_BATCHAI_JOB_MOUNT_ROOT/logs"
+    }
+}
+
